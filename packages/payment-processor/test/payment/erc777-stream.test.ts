@@ -114,6 +114,7 @@ describe('erc777-stream', () => {
         const sf = await getSuperFluidFramework(networkValidRequest, provider);
         expect(sf).toBeDefined();
       },
+      10000, // 10 seconds timeout especially for optimism
     );
   });
 
@@ -227,7 +228,7 @@ describe('erc777-stream', () => {
         providerOrSigner: provider,
       });
       expect(paymentFlowRate).toBe(expectedFlowRate);
-    });
+    }, 10000); // 10 seconds timeout because of many txs
 
     it('closeErc777StreamRequest should close an ERC777 request', async () => {
       let tx;
@@ -266,7 +267,7 @@ describe('erc777-stream', () => {
         providerOrSigner: provider,
       });
       expect(paymentFlowRate).toBe('0');
-    }, 10000);
+    }, 10000); // 10 seconds timeout because of many txs
   });
 
   describe('makeErc777OneOffPayment', () => {
